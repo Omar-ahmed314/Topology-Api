@@ -13,3 +13,5 @@
 1640958580454	Encapsulate field 'mSource'
 1640961459107	Encapsulate field 'mT1'
 1640975407056	Delete element
+1640980113598	Encapsulate field 'mTopologyId'
+1640980127395	Encapsulate field 'mComponentList'

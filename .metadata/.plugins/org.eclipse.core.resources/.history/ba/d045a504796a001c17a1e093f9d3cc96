@@ -73,7 +73,7 @@ public class Resistor extends Component{
 	public void writeFile(FileWriter fileName) {
 		String output = "resistor " + mType + " " + mDefaultValue + " " + mMinValue + " " + mMaxValue + " " + mT1 + " " + mT2;
 		try {
-			fileName.append(output);
+			fileName.write(output);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

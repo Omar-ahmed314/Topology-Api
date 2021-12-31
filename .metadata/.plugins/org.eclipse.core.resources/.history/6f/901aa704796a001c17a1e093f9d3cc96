@@ -1,6 +1,5 @@
 package topologyApi;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -8,72 +7,99 @@ import java.util.Scanner;
 import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 
-public class Resistor extends Component{
+public class NMOS extends Component{
 	private double mDefaultValue;
 	private double mMinValue;
 	private double mMaxValue;
-	private String mT1;
-	private String mT2;
+	private String mDrain;
+	private String mGate;
+	private String mSource;
 	
-	public Resistor() {}
-	public Resistor(String id, double defaultValue, double minValue, double maxValue, String t1, String t2) {
-		super("resistor", id);
+	public NMOS(String id, double defaultValue, double minValue, double maxValue, String drain, String gate, String source) {
+		super("nmos", id);
 		this.mDefaultValue = defaultValue;
 		this.mMinValue = minValue;
 		this.mMaxValue = maxValue;
-		this.mT1 = t1;
-		this.mT2 = t2;
+		this.mDrain = drain;
+		this.mGate = gate;
+		this.mSource = source;
 	}
+
 	public double getDefaultValue() {
 		return mDefaultValue;
 	}
+
 	public void setDefaultValue(double mDefaultValue) {
 		this.mDefaultValue = mDefaultValue;
 	}
+
 	public double getMinValue() {
 		return mMinValue;
 	}
+
 	public void setMinValue(double mMinValue) {
 		this.mMinValue = mMinValue;
 	}
+
 	public double getMaxValue() {
 		return mMaxValue;
 	}
+
 	public void setMaxValue(double mMaxValue) {
 		this.mMaxValue = mMaxValue;
 	}
-	
-	public String getT1() {
-		return mT1;
+
+	public String getDrain() {
+		return mDrain;
 	}
-	public void setT1(String mT1) {
-		this.mT1 = mT1;
+
+	public void setDrain(String mDrain) {
+		this.mDrain = mDrain;
+	}
+
+	public String getGate() {
+		return mGate;
+	}
+
+	public void setGate(String mGate) {
+		this.mGate = mGate;
+	}
+
+	public String getSource() {
+		return mSource;
+	}
+
+	public void setSource(String mSource) {
+		this.mSource = mSource;
 	}
 	
 	@Override
 	public void print() {
-		System.out.println("Resistor");
+		System.out.println("NMOS");
 		super.print();
 		System.out.println("Default value: " + mDefaultValue + " Min value: " + mMinValue + " Max value: " + mMaxValue);
-		System.out.println("T1: " + mT1 + " T2: " + mT2);
+		System.out.println("Drain: " + mDrain + " Gate: " + mGate + " Source: " + mSource);
 	}
 	
+
 	@Override
 	public void readFile(Scanner fileName) {
-		mType = "resistor";
+		mType = "nmos";
 		mId = fileName.next();
 		mDefaultValue = fileName.nextDouble();
 		mMinValue = fileName.nextDouble();
 		mMaxValue = fileName.nextDouble();
-		mT1 = fileName.next();
-		mT2 = fileName.next();
+		mDrain = fileName.next();
+		mGate = fileName.next();
+		mSource = fileName.next();
 	}
 	
 	@Override
 	public void writeFile(FileWriter fileName) {
-		String output = "resistor " + mType + " " + mDefaultValue + " " + mMinValue + " " + mMaxValue + " " + mT1 + " " + mT2;
+		String output = "nmos " + mType + " " + mDefaultValue + " " + mMinValue + " " + mMaxValue + " " + mDrain + " " + mGate + " " + mSource;
+	
 		try {
-			fileName.append(output);
+			fileName.write(output);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,32 +108,36 @@ public class Resistor extends Component{
 	
 	@Override
 	public void readJson(JsonObject ob) {
-		JsonObject resistance = (JsonObject)ob.get("resistance");
 		JsonObject netlist = (JsonObject)ob.get("netlist");
-		mType = "resistor";
+		mType = "nmos";
 		mId = (String)ob.get("id");
-		mDefaultValue = (double)resistance.get("default");
-		mMinValue = (double)resistance.get("min");
-		mMaxValue = (double)resistance.get("max");
-		mT1 = (String)netlist.get("t1");
-		mT2 = (String)netlist.get("t2");
+		
+		// TODO modify this line of code to work with the id of the NMOS
+		JsonObject m = (JsonObject)ob.get(mId);
+		mDefaultValue = (double)m.get("default");
+		mMinValue = (double)m.get("min");
+		mMaxValue = (double)m.get("max");
+		mDrain = (String)netlist.get("drain");
+		mGate = (String)netlist.get("gate");
+		mSource = (String)netlist.get("source");
 	}
 	
 	@Override
 	public void writeJson(JsonObject ob) {
 		JsonArray components = (JsonArray)ob.get("component");
 		JsonObject component = new JsonObject();
-		JsonObject resistance = new JsonObject();
+		JsonObject m = new JsonObject();
 		JsonObject netlist = new JsonObject();
-		component.put("type", "resistor");
+		component.put("type", "nmos");
 		component.put("id", mId);
-		resistance.put("default", mDefaultValue);
-		resistance.put("min", mMinValue);
-		resistance.put("max", mMaxValue);
-		netlist.put("t1", mT1);
-		netlist.put("t2",  mT2);
-		component.put("resistance", resistance);
+		m.put("default", mDefaultValue);
+		m.put("min", mMinValue);
+		m.put("max", mMaxValue);
+		netlist.put("drain", mDrain);
+		netlist.put("gate",  mGate);
+		component.put(mId, m);
 		component.put("netlist", netlist);
 		components.add(component);
 	}
+
 }

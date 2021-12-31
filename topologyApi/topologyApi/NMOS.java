@@ -15,6 +15,7 @@ public class NMOS extends Component{
 	private String mGate;
 	private String mSource;
 	
+	public NMOS() {}
 	public NMOS(String id, double defaultValue, double minValue, double maxValue, String drain, String gate, String source) {
 		super("nmos", id);
 		this.mDefaultValue = defaultValue;
@@ -99,7 +100,7 @@ public class NMOS extends Component{
 		String output = "nmos " + mType + " " + mDefaultValue + " " + mMinValue + " " + mMaxValue + " " + mDrain + " " + mGate + " " + mSource;
 	
 		try {
-			fileName.write(output);
+			fileName.append(output);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
