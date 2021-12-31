@@ -8,9 +8,9 @@ public class Resistor extends Component{
 	private String mT2;
 	public Resistor(String id, int defaultValue, int minValue, int maxValue, String t1, String t2) {
 		super("resistor", id);
-		this.mDefaultValue = defaultValue;
-		this.mMinValue = minValue;
-		this.mMaxValue = maxValue;
+		this.setDefaultValue(defaultValue);
+		this.setMinValue(minValue);
+		this.setMaxValue(maxValue);
 		this.mT1 = t1;
 		this.mT2 = t2;
 	}
@@ -33,13 +33,6 @@ public class Resistor extends Component{
 		this.mMaxValue = mMaxValue;
 	}
 	
-	public String getT1() {
-		return mT1;
-	}
-	public void setT1(String mT1) {
-		this.mT1 = mT1;
-	}
-	
 	@Override
 	public void print() {
 		System.out.println("Resistor");
@@ -47,6 +40,12 @@ public class Resistor extends Component{
 		System.out.println("Default value: " + mDefaultValue);
 		System.out.println("Min value: " + mMinValue);
 		System.out.println("Max value: " + mMaxValue);
+	}
+	public String getT1() {
+		return mT1;
+	}
+	public void setT1(String mT1) {
+		this.mT1 = mT1;
 	}
 }
 // TODO edit this class

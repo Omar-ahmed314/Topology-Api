@@ -10,12 +10,12 @@ public class NMOS extends Component{
 	
 	public NMOS(String id, double defaultValue, double minValue, double maxValue, String drain, String gate, String source) {
 		super("nmos", id);
-		this.mDefaultValue = defaultValue;
-		this.mMinValue = minValue;
-		this.mMaxValue = maxValue;
-		this.mDrain = drain;
-		this.mGate = gate;
-		this.mSource = source;
+		this.setDefaultValue(defaultValue);
+		this.setMinValue(minValue);
+		this.setMaxValue(maxValue);
+		this.setDrain(drain);
+		this.setGate(gate);
+		this.setSource(source);
 	}
 
 	public double getDefaultValue() {
