@@ -1,0 +1,7 @@
+package topologyApi;
+
+import java.util.HashMap;
+
+public interface Component {
+	private HashMap<String, String> mNetList;
+}

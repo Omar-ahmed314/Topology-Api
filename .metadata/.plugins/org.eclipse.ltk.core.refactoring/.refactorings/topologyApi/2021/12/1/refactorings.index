@@ -1,1 +1,4 @@
 1640954514621	Rename type 'TopologyApi'
+1640956498719	Delete element
+1640956910274	Encapsulate field 'mType'
+1640956923221	Encapsulate field 'mId'

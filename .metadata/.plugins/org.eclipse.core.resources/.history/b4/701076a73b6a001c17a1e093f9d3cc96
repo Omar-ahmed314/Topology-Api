@@ -1,0 +1,5 @@
+package topologyApi;
+
+public interface Component {
+
+}
