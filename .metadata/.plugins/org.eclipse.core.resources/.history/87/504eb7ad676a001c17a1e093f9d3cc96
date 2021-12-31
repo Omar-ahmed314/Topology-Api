@@ -1,0 +1,12 @@
+package topologyApi;
+
+import java.io.FileReader;
+
+import com.github.cliftonlabs.json_simple.*;
+
+public interface LoadAndStore {
+	public Component readFile(FileReader fileName);
+	public void writeFile(FileReader fileName);
+	public Component readJson(JsonObject ob);
+	public void writeJson(JsonObject ob);
+}

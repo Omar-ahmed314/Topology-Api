@@ -1,5 +1,12 @@
 package topologyApi;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
+
 public class NMOS extends Component{
 	private double mDefaultValue;
 	private double mMinValue;
@@ -72,6 +79,65 @@ public class NMOS extends Component{
 		super.print();
 		System.out.println("Default value: " + mDefaultValue + " Min value: " + mMinValue + " Max value: " + mMaxValue);
 		System.out.println("Drain: " + mDrain + " Gate: " + mGate + " Source: " + mSource);
+	}
+	
+
+	@Override
+	public void readFile(Scanner fileName) {
+		mType = "nmos";
+		mId = fileName.next();
+		mDefaultValue = fileName.nextDouble();
+		mMinValue = fileName.nextDouble();
+		mMaxValue = fileName.nextDouble();
+		mDrain = fileName.next();
+		mGate = fileName.next();
+		mSource = fileName.next();
+	}
+	
+	@Override
+	public void writeFile(FileWriter fileName) {
+		String output = "nmos " + mType + " " + mDefaultValue + " " + mMinValue + " " + mMaxValue + " " + mDrain + " " + mGate + " " + mSource;
+	
+		try {
+			fileName.write(output);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void readJson(JsonObject ob) {
+		JsonObject netlist = (JsonObject)ob.get("netlist");
+		mType = "nmos";
+		mId = (String)ob.get("id");
+		
+		// TODO modify this line of code to work with the id of the NMOS
+		JsonObject m = (JsonObject)ob.get(mId);
+		mDefaultValue = (double)m.get("default");
+		mMinValue = (double)m.get("min");
+		mMaxValue = (double)m.get("max");
+		mDrain = (String)netlist.get("drain");
+		mGate = (String)netlist.get("gate");
+		mSource = (String)netlist.get("source");
+	}
+	
+	@Override
+	public void writeJson(JsonObject ob) {
+		JsonArray components = (JsonArray)ob.get("component");
+		JsonObject component = new JsonObject();
+		JsonObject m = new JsonObject();
+		JsonObject netlist = new JsonObject();
+		component.put("type", "nmos");
+		component.put("id", mId);
+		m.put("default", mDefaultValue);
+		m.put("min", mMinValue);
+		m.put("max", mMaxValue);
+		netlist.put("drain", mDrain);
+		netlist.put("gate",  mGate);
+		component.put(mId, m);
+		component.put("netlist", netlist);
+		components.add(component);
 	}
 
 }

@@ -1,17 +1,13 @@
 package topologyApi;
 
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.HashMap;
-import java.util.Scanner;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 
-public abstract class Component{
-	protected String mType;
-	protected String mId;
-	
-	public Component() {}
+public abstract class Component implements LoadAndStore{
+	private String mType;
+	private String mId;
 	public Component(String type, String id) {
 		this.setType(type);
 		this.setId(id);
@@ -32,8 +28,8 @@ public abstract class Component{
 		System.out.println("Type: " + mType + " " + "Id: " + mId);
 	}
 	
-	public abstract void readFile(Scanner fileName);
-	public abstract void writeFile(FileWriter fileName);
-	public abstract void readJson(JsonObject ob);
+	public abstract Component readFile(FileReader fileName);
+	public abstract void writeFile(FileReader fileName);
+	public abstract Component readJson(JsonObject ob);
 	public abstract void writeJson(JsonObject ob);
 }
