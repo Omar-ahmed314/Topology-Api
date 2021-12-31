@@ -44,8 +44,9 @@ public class Resistor extends Component{
 	public void print() {
 		System.out.println("Resistor");
 		super.print();
-		System.out.println("Default value: " + mDefaultValue + " Min value: " + mMinValue + " Max value: " + mMaxValue);
-		System.out.println("T1: " + mT1 + " T2: " + mT2);
+		System.out.println("Default value: " + mDefaultValue);
+		System.out.println("Min value: " + mMinValue);
+		System.out.println("Max value: " + mMaxValue);
 	}
 }
 // TODO edit this class
