@@ -2,3 +2,6 @@
 1640956498719	Delete element
 1640956910274	Encapsulate field 'mType'
 1640956923221	Encapsulate field 'mId'
+1640957707387	Encapsulate field 'mDefaultValue'
+1640957723604	Encapsulate field 'mMinValue'
+1640957736228	Encapsulate field 'mMaxValue'
