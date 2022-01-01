@@ -1,5 +1,0 @@
-package topologyApi;
-
-public interface LoadAndStore {
-
-}

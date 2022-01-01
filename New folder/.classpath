@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Omar Ahmed/Desktop/New folder/src/lib/json-simple-4.0.0.jar" sourcepath="src/lib/json-simple-4.0.0-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/Omar%20Ahmed/Desktop/New%20folder/src/lib/"/>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,10 @@
+3
+top1 2
+resistor res1 100.0 10.0 1000.0 vdd n1
+nmos m1 1.5 1.0 2.0 n1 vin vss
+top1 2
+resistor res1 100.0 10.0 1000.0 vdd n1
+nmos m1 1.5 1.0 2.0 n1 vin vss
+top1 2
+resistor res1 100.0 10.0 1000.0 vdd n1
+nmos m1 1.5 1.0 2.0 n1 vin vss
