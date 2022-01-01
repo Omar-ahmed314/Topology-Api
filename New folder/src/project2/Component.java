@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 
+/**
+ * Abstract class represent the generic component
+ * */
 public abstract class Component{
 	protected String mType;
 	protected String mId;
