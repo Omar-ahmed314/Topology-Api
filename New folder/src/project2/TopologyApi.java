@@ -12,6 +12,9 @@ import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 
+/**
+ * Topology api class, access, manage and store topologies
+ * */
 public class TopologyApi {
 	private int mTopologyCount;
 	private ArrayList<Topology> mTopologyList;
@@ -54,13 +57,21 @@ public class TopologyApi {
 		return topology;
 	}
 	
+	/**
+	 * Reads the json file and store it in the memory
+	 * @param ob The Json file name
+	 * */
 	public void readJSON(String jsonFileName) throws JsonException, IOException {
 		Topology topology = readJson(jsonFileName);
 		mTopologyList.add(topology);
 		writeFile();
 	}
 	
-	
+	/**
+	 * Read a given topology id from the memory and store it in a json file
+	 * @param topologyId The topology Id
+	 * @param jsonFileName The json file name
+	 * */
 	public void writeJSON(String topologyId, String jsonFileName) throws Exception {
 		Topology topology = getTopologyWithId(topologyId);
 		if(topology == null) {throw new Exception("Topology Id is not found");}
@@ -74,6 +85,10 @@ public class TopologyApi {
 		
 	}
 	
+	/**
+	 * Get a topology given its id
+	 * @param topologyId The id of the topology
+	 * */
 	private Topology getTopologyWithId(String topologyId) {
 		for(Topology topology: mTopologyList) {
 			if(topology.getTopologyId().equals(topologyId)) { return topology;}
@@ -81,23 +96,41 @@ public class TopologyApi {
 		return null;
 	}
 	
+	/**
+	 * Reads the available topologies from the memory
+	 * @return List of all topologies stored in the memory
+	 * */
 	public ArrayList<Topology> queryTopologies(){
 		return mTopologyList;
 	}
 	
+	/**
+	 * Delete a topology from memory given its id
+	 * @param topologyId The topology id
+	 * */
 	public void deleteTopology(String topologyId) throws Exception {
 		Topology topology = getTopologyWithId(topologyId);
 		if(topology == null) {throw new Exception("Topology Id not found");}
 		mTopologyList.remove(topology);
 		writeFile();
 	}
-	
+
+	/**
+	 * Gets the given topology components
+	 * @param topologyId The topology id
+	 * @return List of the topology components
+	 * */
 	public ArrayList<Component> queryDevices(String topologyId) throws Exception{
 		Topology topology = getTopologyWithId(topologyId);
 		if(topology == null) {throw new Exception("Topology Id not found");}
 		return topology.getComponentList();
 	}
-	
+
+	/**
+	 * Gets the given topology components connected to the same node
+	 * @param topologyId The topology id
+	 * @param nodeId The node id
+	 * */
 	public ArrayList<Component> queryDevicesWithNetlistNode(String topologyId, String nodeId) throws Exception{
 		Topology topology = getTopologyWithId(topologyId);
 		if(topology == null) {throw new Exception("Topology Id not found");}
